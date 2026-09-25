@@ -87,6 +87,7 @@ class Backend:
         # Install yay or paru using makepkg
         script = f"""
         cd /tmp
+        rm -rf {helper}
         git clone https://aur.archlinux.org/{helper}.git
         cd {helper}
         makepkg -si --noconfirm

@@ -12,7 +12,9 @@ source=("git+file://${PWD}")
 sha256sums=('SKIP')
 
 package() {
-  cd "$srcdir/${pkgname}"
+  # Look for the source directory inside srcdir
+  # It will be whatever the git repo was cloned as (e.g. arch-universal-toolbox-1.0 or arch-tool)
+  cd "$srcdir/"*
 
   # Install binary
   install -Dm755 src/main.py "$pkgdir/usr/bin/$pkgname"

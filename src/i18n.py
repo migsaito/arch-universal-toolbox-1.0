@@ -20,7 +20,17 @@ translations = {
         "language": "Language",
         "status_ready": "Ready",
         "repo_added_success": "Repository added successfully!",
-        "repo_added_fail": "Failed to add repository."
+        "repo_added_fail": "Failed to add repository.",
+        "col_name": "Name",
+        "col_version": "Version",
+        "col_desc": "Description",
+        "col_source": "Source",
+        "warn_no_helper": "No AUR helper (yay/paru) found. Install one first in the 'AUR Helpers' tab.",
+        "status_searching": "Searching...",
+        "status_found": "Found {} packages.",
+        "msg_warning": "Warning",
+        "msg_success": "Success",
+        "msg_error": "Error"
     },
     "PT-BR": {
         "app_title": "Ferramenta Arch",
@@ -43,7 +53,17 @@ translations = {
         "language": "Idioma",
         "status_ready": "Pronto",
         "repo_added_success": "Repositório adicionado com sucesso!",
-        "repo_added_fail": "Falha ao adicionar repositório."
+        "repo_added_fail": "Falha ao adicionar repositório.",
+        "col_name": "Nome",
+        "col_version": "Versão",
+        "col_desc": "Descrição",
+        "col_source": "Origem",
+        "warn_no_helper": "Nenhum helper AUR (yay/paru) encontrado. Instale um primeiro na aba 'Helpers AUR'.",
+        "status_searching": "Pesquisando...",
+        "status_found": "Encontrados {} pacotes.",
+        "msg_warning": "Aviso",
+        "msg_success": "Sucesso",
+        "msg_error": "Erro"
     },
     "DE": {
         "app_title": "Arch Werkzeug",
@@ -66,6 +86,16 @@ translations = {
         "language": "Sprache",
         "status_ready": "Bereit",
         "repo_added_success": "Repository erfolgreich hinzugefügt!",
-        "repo_added_fail": "Fehler beim Hinzufügen des Repositorys."
+        "repo_added_fail": "Fehler beim Hinzufügen des Repositorys.",
+        "col_name": "Name",
+        "col_version": "Version",
+        "col_desc": "Beschreibung",
+        "col_source": "Quelle",
+        "warn_no_helper": "Kein AUR-Helfer (yay/paru) gefunden. Installiere zuerst einen im 'AUR Helfer' Tab.",
+        "status_searching": "Suchen...",
+        "status_found": "{} Pakete gefunden.",
+        "msg_warning": "Warnung",
+        "msg_success": "Erfolg",
+        "msg_error": "Fehler"
     }
 }

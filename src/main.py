@@ -78,7 +78,7 @@ class ArchToolWindow(QMainWindow):
 
         # Table
         self.table = QTableWidget(0, 4)
-        self.table.setHorizontalHeaderLabels(["Name", "Version", "Description", "Source"])
+        self.table.setHorizontalHeaderLabels([self.t["col_name"], self.t["col_version"], self.t["col_desc"], self.t["col_source"]])
         self.table.horizontalHeader().setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
         self.table.setSelectionBehavior(QTableWidget.SelectionBehavior.SelectRows)
 
@@ -146,7 +146,7 @@ class ArchToolWindow(QMainWindow):
         if not query:
             return
 
-        self.status_label.setText("Searching...")
+        self.status_label.setText(self.t["status_searching"])
         self.table.setRowCount(0)
 
         if self.rb_pacman.isChecked():
@@ -155,7 +155,7 @@ class ArchToolWindow(QMainWindow):
             # For AUR we check if yay or paru is installed
             helper = "yay" if self.backend.check_installed("yay") else "paru"
             if not self.backend.check_installed(helper):
-                QMessageBox.warning(self, "Warning", "No AUR helper (yay/paru) found. Install one first in the 'AUR Helpers' tab.")
+                QMessageBox.warning(self, self.t["msg_warning"], self.t["warn_no_helper"])
                 self.status_label.setText(self.t["status_ready"])
                 return
             results = self.backend.search_aur(query, helper=helper)
@@ -167,7 +167,7 @@ class ArchToolWindow(QMainWindow):
             self.table.setItem(i, 2, QTableWidgetItem(pkg["desc"]))
             self.table.setItem(i, 3, QTableWidgetItem(pkg["source"]))
 
-        self.status_label.setText(f"Found {len(results)} packages.")
+        self.status_label.setText(self.t["status_found"].format(len(results)))
 
     def install_selected(self):
         selected = self.table.selectedItems()
@@ -203,11 +203,11 @@ class ArchToolWindow(QMainWindow):
 
         success, _ = self.backend.add_repo(name, url)
         if success:
-            QMessageBox.information(self, "Success", self.t["repo_added_success"])
+            QMessageBox.information(self, self.t["msg_success"], self.t["repo_added_success"])
             self.repo_name_input.clear()
             self.repo_url_input.clear()
         else:
-            QMessageBox.critical(self, "Error", self.t["repo_added_fail"])
+            QMessageBox.critical(self, self.t["msg_error"], self.t["repo_added_fail"])
 
     def change_language(self, lang):
         self.current_lang = lang
@@ -224,6 +224,7 @@ class ArchToolWindow(QMainWindow):
         self.search_btn.setText(self.t["search_btn"])
         self.rb_pacman.setText(self.t["pacman"])
         self.rb_aur.setText(self.t["aur"])
+        self.table.setHorizontalHeaderLabels([self.t["col_name"], self.t["col_version"], self.t["col_desc"], self.t["col_source"]])
         self.install_btn.setText(self.t["install_btn"])
         self.remove_btn.setText(self.t["remove_btn"])
 
