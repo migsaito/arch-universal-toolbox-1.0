@@ -1,101 +1,23 @@
-translations = {
-    "EN-US": {
-        "app_title": "Arch Tool",
-        "store_tab": "Store",
-        "repos_tab": "Repositories",
-        "aur_tab": "AUR Helpers",
-        "search_placeholder": "Search packages...",
-        "search_btn": "Search",
-        "install_btn": "Install",
-        "remove_btn": "Remove",
-        "pacman": "Pacman",
-        "aur": "AUR",
-        "repo_name": "Repository Name",
-        "repo_url": "Server URL",
-        "add_repo_btn": "Add Repository",
-        "install_yay": "Install yay",
-        "uninstall_yay": "Uninstall yay",
-        "install_paru": "Install paru",
-        "uninstall_paru": "Uninstall paru",
-        "language": "Language",
-        "status_ready": "Ready",
-        "repo_added_success": "Repository added successfully!",
-        "repo_added_fail": "Failed to add repository.",
-        "col_name": "Name",
-        "col_version": "Version",
-        "col_desc": "Description",
-        "col_source": "Source",
-        "warn_no_helper": "No AUR helper (yay/paru) found. Install one first in the 'AUR Helpers' tab.",
-        "status_searching": "Searching...",
-        "status_found": "Found {} packages.",
-        "msg_warning": "Warning",
-        "msg_success": "Success",
-        "msg_error": "Error"
-    },
-    "PT-BR": {
-        "app_title": "Ferramenta Arch",
-        "store_tab": "Loja",
-        "repos_tab": "Repositórios",
-        "aur_tab": "Helpers AUR",
-        "search_placeholder": "Pesquisar pacotes...",
-        "search_btn": "Pesquisar",
-        "install_btn": "Instalar",
-        "remove_btn": "Remover",
-        "pacman": "Pacman",
-        "aur": "AUR",
-        "repo_name": "Nome do Repositório",
-        "repo_url": "URL do Servidor",
-        "add_repo_btn": "Adicionar Repositório",
-        "install_yay": "Instalar yay",
-        "uninstall_yay": "Desinstalar yay",
-        "install_paru": "Instalar paru",
-        "uninstall_paru": "Desinstalar paru",
-        "language": "Idioma",
-        "status_ready": "Pronto",
-        "repo_added_success": "Repositório adicionado com sucesso!",
-        "repo_added_fail": "Falha ao adicionar repositório.",
-        "col_name": "Nome",
-        "col_version": "Versão",
-        "col_desc": "Descrição",
-        "col_source": "Origem",
-        "warn_no_helper": "Nenhum helper AUR (yay/paru) encontrado. Instale um primeiro na aba 'Helpers AUR'.",
-        "status_searching": "Pesquisando...",
-        "status_found": "Encontrados {} pacotes.",
-        "msg_warning": "Aviso",
-        "msg_success": "Sucesso",
-        "msg_error": "Erro"
-    },
-    "DE": {
-        "app_title": "Arch Werkzeug",
-        "store_tab": "Geschäft",
-        "repos_tab": "Repositorys",
-        "aur_tab": "AUR Helfer",
-        "search_placeholder": "Pakete suchen...",
-        "search_btn": "Suchen",
-        "install_btn": "Installieren",
-        "remove_btn": "Entfernen",
-        "pacman": "Pacman",
-        "aur": "AUR",
-        "repo_name": "Repository Name",
-        "repo_url": "Server URL",
-        "add_repo_btn": "Repository hinzufügen",
-        "install_yay": "yay installieren",
-        "uninstall_yay": "yay deinstallieren",
-        "install_paru": "paru installieren",
-        "uninstall_paru": "paru deinstallieren",
-        "language": "Sprache",
-        "status_ready": "Bereit",
-        "repo_added_success": "Repository erfolgreich hinzugefügt!",
-        "repo_added_fail": "Fehler beim Hinzufügen des Repositorys.",
-        "col_name": "Name",
-        "col_version": "Version",
-        "col_desc": "Beschreibung",
-        "col_source": "Quelle",
-        "warn_no_helper": "Kein AUR-Helfer (yay/paru) gefunden. Installiere zuerst einen im 'AUR Helfer' Tab.",
-        "status_searching": "Suchen...",
-        "status_found": "{} Pakete gefunden.",
-        "msg_warning": "Warnung",
-        "msg_success": "Erfolg",
-        "msg_error": "Fehler"
-    }
-}
+import json
+import os
+
+class I18n:
+    def __init__(self):
+        self.locales_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "locales")
+        self.translations = {}
+        self.load_translations()
+
+    def load_translations(self):
+        for lang in ["EN-US", "PT-BR", "DE"]:
+            file_path = os.path.join(self.locales_dir, f"{lang}.json")
+            if os.path.exists(file_path):
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    self.translations[lang] = json.load(f)
+            else:
+                self.translations[lang] = {}
+
+    def get_translation(self, lang):
+        return self.translations.get(lang, self.translations.get("EN-US", {}))
+
+i18n = I18n()
+translations = i18n.translations

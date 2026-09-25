@@ -8,19 +8,18 @@ url="https://github.com/yourusername/arch-tool"
 license=('GPL3')
 depends=('python' 'python-pyqt6' 'pacman' 'xterm')
 makedepends=('git')
-source=("git+file://${PWD}")
+source=("${pkgname}::git+file://${PWD}")
 sha256sums=('SKIP')
 
 package() {
-  # Look for the source directory inside srcdir
-  # It will be whatever the git repo was cloned as (e.g. arch-universal-toolbox-1.0 or arch-tool)
-  cd "$srcdir/"*
+  cd "$srcdir/${pkgname}"
 
   # Install source files
   install -d "$pkgdir/usr/share/$pkgname"
   cp -r src/* "$pkgdir/usr/share/$pkgname/"
 
   # Create a wrapper script to run the python app correctly
+  install -d "$pkgdir/usr/bin"
   cat << _EOF_ > "$pkgdir/usr/bin/$pkgname"
 #!/bin/bash
 python /usr/share/$pkgname/main.py "\$@"
