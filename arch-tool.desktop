@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Arch Tool
+Comment=A modern GUI to manage pacman/AUR packages, repositories, and AUR helpers
+Exec=arch-tool
+Icon=system-software-install
+Terminal=false
+Type=Application
+Categories=System;Settings;
+Keywords=arch;pacman;aur;yay;paru;store;
