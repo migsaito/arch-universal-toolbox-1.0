@@ -27,6 +27,9 @@ class Backend:
             if not lines[i].strip():
                 continue
             name_part = lines[i].strip().split(' ')[0]
+            # Strip repository prefix if present (e.g. core/linux -> linux)
+            if '/' in name_part:
+                name_part = name_part.split('/')[-1]
             version = lines[i].strip().split(' ')[1] if len(lines[i].strip().split(' ')) > 1 else ""
             desc = lines[i+1].strip() if i+1 < len(lines) else ""
             packages.append({"name": name_part, "version": version, "desc": desc, "source": "pacman"})
@@ -47,6 +50,9 @@ class Backend:
             # example line: aur/google-chrome 129.0.6668.70-1 (+2898 33.64) (Installed)
             parts = lines[i].strip().split(' ')
             name_part = parts[0]
+            # Strip repository prefix if present (e.g. aur/google-chrome -> google-chrome)
+            if '/' in name_part:
+                name_part = name_part.split('/')[-1]
             version = parts[1] if len(parts) > 1 else ""
             desc = lines[i+1].strip() if i+1 < len(lines) else ""
             packages.append({"name": name_part, "version": version, "desc": desc, "source": "aur"})

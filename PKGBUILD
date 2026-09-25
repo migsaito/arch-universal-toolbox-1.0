@@ -16,10 +16,7 @@ package() {
   # It will be whatever the git repo was cloned as (e.g. arch-universal-toolbox-1.0 or arch-tool)
   cd "$srcdir/"*
 
-  # Install binary
-  install -Dm755 src/main.py "$pkgdir/usr/bin/$pkgname"
-
-  # Install other source files if needed
+  # Install source files
   install -d "$pkgdir/usr/share/$pkgname"
   cp -r src/* "$pkgdir/usr/share/$pkgname/"
 

@@ -14,8 +14,8 @@ Arch Tool is a modern Graphical User Interface (GUI) tool to manage pacman and A
 You can install Arch Tool using the provided `PKGBUILD`.
 
 ```bash
-git clone https://github.com/yourusername/arch-tool.git
-cd arch-tool
+git clone https://github.com/migsaito/arch-universal-toolbox-1.0
+cd arch-universal-toolbox-1.0
 makepkg -si
 ```
 
